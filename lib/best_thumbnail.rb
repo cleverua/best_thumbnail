@@ -73,11 +73,7 @@ class BestThumbnail
       histogram = image.quantize(256, Magick::RGBColorspace, false, 0, false).color_histogram()
       greens = Array.new(HISTOGRAM_COLUMN_COUNT, 0)
       histogram.each_pair do |color, count| 
-        #if color.green > 100          
-          #greens[color.green] += count 
-          greens[color.intensity * 255 / Magick::MaxRGB] += count 
-          #greens[pixel_color(color)] += count 
-        #end
+        greens[color.intensity * 255 / Magick::MaxRGB] += count 
       end
       @histograms[filename] = greens
     end
